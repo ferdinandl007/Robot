@@ -16,6 +16,8 @@
 		53C8D3D620BF36EB00F993DB /* SocketRocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53C8D3D520BF36EA00F993DB /* SocketRocket.framework */; };
 		53C8D3D820BF36F700F993DB /* SocketRocket.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 53C8D3D520BF36EA00F993DB /* SocketRocket.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		53C8D3DD20BF37E600F993DB /* RMCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53C8D3DC20BF37E600F993DB /* RMCore.framework */; };
+		CF70DED523CA22A400D20853 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CF70DED123CA22A400D20853 /* LaunchScreen.storyboard */; };
+		CF70DED623CA22A400D20853 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CF70DED323CA22A400D20853 /* Main.storyboard */; };
 		CFBCF16923CA1FD300E6B3EA /* remote_activation.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CFBCF11B23CA1FD300E6B3EA /* remote_activation.mp3 */; };
 		CFBCF16A23CA1FD300E6B3EA /* auto_pilot_activated.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CFBCF11C23CA1FD300E6B3EA /* auto_pilot_activated.mp3 */; };
 		CFBCF16B23CA1FD300E6B3EA /* mission_complete.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CFBCF11D23CA1FD300E6B3EA /* mission_complete.mp3 */; };
@@ -49,8 +51,6 @@
 		CFBCF18723CA1FD300E6B3EA /* pin_s.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CFBCF13923CA1FD300E6B3EA /* pin_s.mp3 */; };
 		CFBCF18823CA1FD300E6B3EA /* system_shut_down.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CFBCF13A23CA1FD300E6B3EA /* system_shut_down.mp3 */; };
 		CFBCF18923CA1FD300E6B3EA /* data_transfer_complete.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CFBCF13B23CA1FD300E6B3EA /* data_transfer_complete.mp3 */; };
-		CFBCF18A23CA1FD300E6B3EA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CFBCF13D23CA1FD300E6B3EA /* LaunchScreen.storyboard */; };
-		CFBCF18B23CA1FD300E6B3EA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CFBCF13F23CA1FD300E6B3EA /* Main.storyboard */; };
 		CFBCF18C23CA1FD300E6B3EA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CFBCF14123CA1FD300E6B3EA /* Assets.xcassets */; };
 		CFBCF18D23CA1FD300E6B3EA /* pin.scn in Resources */ = {isa = PBXBuildFile; fileRef = CFBCF14223CA1FD300E6B3EA /* pin.scn */; };
 		CFBCF18E23CA1FD300E6B3EA /* map-thumb.png in Resources */ = {isa = PBXBuildFile; fileRef = CFBCF14423CA1FD300E6B3EA /* map-thumb.png */; };
@@ -108,6 +108,8 @@
 		53C8D3D520BF36EA00F993DB /* SocketRocket.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SocketRocket.framework; sourceTree = "<group>"; };
 		53C8D3D920BF379800F993DB /* HomeRobot-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HomeRobot-Bridging-Header.h"; sourceTree = "<group>"; };
 		53C8D3DC20BF37E600F993DB /* RMCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RMCore.framework; sourceTree = "<group>"; };
+		CF70DED223CA22A400D20853 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		CF70DED423CA22A400D20853 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Main.storyboard; sourceTree = "<group>"; };
 		CFBCF11B23CA1FD300E6B3EA /* remote_activation.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = remote_activation.mp3; sourceTree = "<group>"; };
 		CFBCF11C23CA1FD300E6B3EA /* auto_pilot_activated.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = auto_pilot_activated.mp3; sourceTree = "<group>"; };
 		CFBCF11D23CA1FD300E6B3EA /* mission_complete.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = mission_complete.mp3; sourceTree = "<group>"; };
@@ -141,8 +143,6 @@
 		CFBCF13923CA1FD300E6B3EA /* pin_s.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = pin_s.mp3; sourceTree = "<group>"; };
 		CFBCF13A23CA1FD300E6B3EA /* system_shut_down.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = system_shut_down.mp3; sourceTree = "<group>"; };
 		CFBCF13B23CA1FD300E6B3EA /* data_transfer_complete.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = data_transfer_complete.mp3; sourceTree = "<group>"; };
-		CFBCF13E23CA1FD300E6B3EA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
-		CFBCF14023CA1FD300E6B3EA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Main.storyboard; sourceTree = "<group>"; };
 		CFBCF14123CA1FD300E6B3EA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CFBCF14223CA1FD300E6B3EA /* pin.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = pin.scn; sourceTree = "<group>"; };
 		CFBCF14423CA1FD300E6B3EA /* map-thumb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map-thumb.png"; sourceTree = "<group>"; };
@@ -289,8 +289,8 @@
 		CFBCF13C23CA1FD300E6B3EA /* Base.lproj */ = {
 			isa = PBXGroup;
 			children = (
-				CFBCF13D23CA1FD300E6B3EA /* LaunchScreen.storyboard */,
-				CFBCF13F23CA1FD300E6B3EA /* Main.storyboard */,
+				CF70DED123CA22A400D20853 /* LaunchScreen.storyboard */,
+				CF70DED323CA22A400D20853 /* Main.storyboard */,
 			);
 			name = Base.lproj;
 			path = "../../../Local document/macOS Apps/HomeRobot-master-3/HomeRobot/Base.lproj";
@@ -457,13 +457,13 @@
 			files = (
 				CFBCF18623CA1FD300E6B3EA /* system_stable.mp3 in Resources */,
 				CFBCF18923CA1FD300E6B3EA /* data_transfer_complete.mp3 in Resources */,
+				CF70DED623CA22A400D20853 /* Main.storyboard in Resources */,
 				CFBCF16D23CA1FD300E6B3EA /* all_phases_complete.mp3 in Resources */,
 				CFBCF17223CA1FD300E6B3EA /* welcome.mp3 in Resources */,
 				CFBCF19023CA1FD300E6B3EA /* bot@2x.png in Resources */,
 				CFBCF17B23CA1FD300E6B3EA /* sorry_try_again.mp3 in Resources */,
 				CFBCF17A23CA1FD300E6B3EA /* engaged.mp3 in Resources */,
 				CFBCF17723CA1FD300E6B3EA /* holographic_imaging_activated.mp3 in Resources */,
-				CFBCF18A23CA1FD300E6B3EA /* LaunchScreen.storyboard in Resources */,
 				CFBCF17D23CA1FD300E6B3EA /* hibernation_activated.mp3 in Resources */,
 				CFBCF16B23CA1FD300E6B3EA /* mission_complete.mp3 in Resources */,
 				CFBCF16E23CA1FD300E6B3EA /* do_you_wish_to_delete.mp3 in Resources */,
@@ -479,7 +479,6 @@
 				CFBCF18D23CA1FD300E6B3EA /* pin.scn in Resources */,
 				CFBCF18823CA1FD300E6B3EA /* system_shut_down.mp3 in Resources */,
 				CFBCF17623CA1FD300E6B3EA /* target_lost.mp3 in Resources */,
-				CFBCF18B23CA1FD300E6B3EA /* Main.storyboard in Resources */,
 				CFBCF17023CA1FD300E6B3EA /* mission_override.mp3 in Resources */,
 				CFBCF16A23CA1FD300E6B3EA /* auto_pilot_activated.mp3 in Resources */,
 				CFBCF17C23CA1FD300E6B3EA /* deactivating.mp3 in Resources */,
@@ -490,6 +489,7 @@
 				CFBCF16923CA1FD300E6B3EA /* remote_activation.mp3 in Resources */,
 				CFBCF18423CA1FD300E6B3EA /* uploading.mp3 in Resources */,
 				CFBCF18223CA1FD300E6B3EA /* target_range.mp3 in Resources */,
+				CF70DED523CA22A400D20853 /* LaunchScreen.storyboard in Resources */,
 				CFBCF17323CA1FD300E6B3EA /* say_scanning.mp3 in Resources */,
 				CFBCF16F23CA1FD300E6B3EA /* scan.mp3 in Resources */,
 				CFBCF17423CA1FD300E6B3EA /* target_locked.mp3 in Resources */,
@@ -532,18 +532,18 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		CFBCF13D23CA1FD300E6B3EA /* LaunchScreen.storyboard */ = {
+		CF70DED123CA22A400D20853 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				CFBCF13E23CA1FD300E6B3EA /* Base */,
+				CF70DED223CA22A400D20853 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
-		CFBCF13F23CA1FD300E6B3EA /* Main.storyboard */ = {
+		CF70DED323CA22A400D20853 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				CFBCF14023CA1FD300E6B3EA /* Base */,
+				CF70DED423CA22A400D20853 /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";

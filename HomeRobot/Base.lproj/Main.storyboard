@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina5_5" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Robotty" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ruB-Xx-lXz">
+                                <rect key="frame" x="20" y="665" width="55" height="52"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="55" id="9R3-1j-kfR"/>
+                                    <constraint firstAttribute="height" constant="52" id="wQf-Gi-05Y"/>
+                                </constraints>
+                                <inset key="titleEdgeInsets" minX="0.0" minY="50" maxX="0.0" maxY="0.0"/>
+                                <state key="normal" title="Maps" backgroundImage="map-thumb.png"/>
+                                <connections>
+                                    <action selector="showMapsTapped" destination="BYZ-38-t0r" eventType="touchUpInside" id="lFH-le-js2"/>
+                                </connections>
+                            </button>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fyi-fa-kIf">
+                                <rect key="frame" x="331" y="669" width="71" height="47"/>
+                                <color key="backgroundColor" red="0.99194461107254028" green="0.99615627527236938" blue="0.99600595235824585" alpha="0.37446489726027399" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="47" id="eTh-hD-DXM"/>
+                                    <constraint firstAttribute="width" constant="71" id="vQh-eN-7GS"/>
+                                </constraints>
+                                <state key="normal" title="Done">
+                                    <color key="titleColor" red="0.11971027404069901" green="0.66917073726654053" blue="0.087956078350543976" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="doneMappingTapped" destination="BYZ-38-t0r" eventType="touchUpInside" id="RLP-Q3-1NY"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="drH-A1-LTw">
+                                <rect key="frame" x="0.0" y="20" width="414" height="23"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                <color key="textColor" red="0.99607473611831665" green="0.99220293760299683" blue="0.99199241399765015" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Robot: off" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mM5-hy-RPe">
+                                <rect key="frame" x="110.66666666666669" y="703" width="193" height="33"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="33" id="IrC-i0-Dd1"/>
+                                    <constraint firstAttribute="width" constant="193" id="mEp-Jc-Nem"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.94264614582061768" green="0.93259352445602417" blue="0.13732174038887024" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GJI-49-Yhe">
+                                <rect key="frame" x="110.66666666666669" y="685" width="193" height="33"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="33" id="Aop-xS-xN1"/>
+                                    <constraint firstAttribute="width" constant="193" id="qpg-43-TY3"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.91471832990646362" green="0.080605350434780121" blue="0.95721238851547241" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o4A-uU-cNo">
+                                <rect key="frame" x="164" y="592" width="86" height="88"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="86" id="0jv-92-3kT"/>
+                                    <constraint firstAttribute="height" constant="88" id="Goq-Yr-agI"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <inset key="titleEdgeInsets" minX="0.0" minY="97" maxX="0.0" maxY="0.0"/>
+                                <size key="titleShadowOffset" width="0.0" height="1"/>
+                                <state key="normal" backgroundImage="bot.png">
+                                    <color key="titleColor" red="0.82357102632522583" green="0.95754176378250122" blue="0.94998711347579956" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="botModeButtonTapped" destination="BYZ-38-t0r" eventType="touchUpInside" id="0k3-r4-u1D"/>
+                                </connections>
+                            </button>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jl6-Q3-cQ7" customClass="MMSlidingButton" customModule="Robotty" customModuleProvider="target">
+                                <rect key="frame" x="87" y="51" width="240" height="57"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="VPG-be-8qm"/>
+                                    <constraint firstAttribute="height" constant="57" id="ueA-37-Tiz"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="dragPointWidth">
+                                        <real key="value" value="70"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="buttonColor">
+                                        <color key="value" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="dragPointColor">
+                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="buttonText" value="KILL ROBOT"/>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="buttonTextColor">
+                                        <color key="value" systemColor="secondarySystemGroupedBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="dragPointTextColor">
+                                        <color key="value" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="buttonUnlockedText" value="ROBOT KILLD"/>
+                                    <userDefinedRuntimeAttribute type="image" keyPath="imageName" value="wifi" catalog="system"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="GJI-49-Yhe" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="BPb-xv-FJ8"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="GJI-49-Yhe" secondAttribute="bottom" constant="18" id="De0-m3-hLm"/>
+                            <constraint firstItem="Jl6-Q3-cQ7" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="IJ0-Pd-WwQ"/>
+                            <constraint firstItem="GJI-49-Yhe" firstAttribute="top" secondItem="o4A-uU-cNo" secondAttribute="bottom" constant="5" id="LfF-hb-8QJ"/>
+                            <constraint firstItem="mM5-hy-RPe" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="PC8-GV-fqU"/>
+                            <constraint firstItem="mM5-hy-RPe" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="Sfq-tm-oSG"/>
+                            <constraint firstItem="Jl6-Q3-cQ7" firstAttribute="top" secondItem="drH-A1-LTw" secondAttribute="bottom" constant="8" id="VbY-uN-td0"/>
+                            <constraint firstItem="ruB-Xx-lXz" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="Vgo-36-leK"/>
+                            <constraint firstItem="drH-A1-LTw" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="W4t-sS-Ezb"/>
+                            <constraint firstItem="drH-A1-LTw" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="YI3-y1-wPV"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="fyi-fa-kIf" secondAttribute="bottom" constant="20" id="cA9-y4-sPQ"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="fyi-fa-kIf" secondAttribute="trailing" constant="12" id="cBp-ao-l9b"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="ruB-Xx-lXz" secondAttribute="bottom" constant="19" id="fcq-n4-Nuo"/>
+                            <constraint firstItem="o4A-uU-cNo" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="tVf-4j-uSk"/>
+                            <constraint firstItem="drH-A1-LTw" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="yN8-gu-kFj"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <connections>
+                        <outlet property="botModeButton" destination="o4A-uU-cNo" id="SNW-Aa-gNk"/>
+                        <outlet property="connectionsLabel" destination="GJI-49-Yhe" id="cuz-9N-VTr"/>
+                        <outlet property="doneMappingButton" destination="fyi-fa-kIf" id="scR-J0-aT7"/>
+                        <outlet property="killRobotSlider" destination="Jl6-Q3-cQ7" id="pjY-lZ-BL9"/>
+                        <outlet property="robotStatusLabel" destination="mM5-hy-RPe" id="Xga-Ih-bss"/>
+                        <outlet property="showMapListButton" destination="ruB-Xx-lXz" id="1PL-rB-B1i"/>
+                        <outlet property="statusLabel" destination="drH-A1-LTw" id="Rah-bo-e0Y"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="32.799999999999997" y="33.733133433283363"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="bot.png" width="64" height="64"/>
+        <image name="map-thumb.png" width="64" height="64"/>
+        <image name="wifi" catalog="system" width="64" height="46"/>
+    </resources>
+</document>
