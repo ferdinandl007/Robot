@@ -109,3 +109,17 @@ extension CGImagePropertyOrientation {
         }
     }
 }
+
+extension UIColor {
+    static var appleBlueColor = UIColor(red: 0, green: 120.0 / 255.0, blue: 200.0 / 255.0, alpha: 1.0)
+}
+
+extension Date {
+    var secondsAgo: TimeInterval {
+        return -timeIntervalSinceNow
+    }
+
+    var millisecondsAgo: TimeInterval {
+        return -timeIntervalSinceNow * 1000.0
+    }
+}

@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -16,6 +16,10 @@
 		53C8D3D620BF36EB00F993DB /* SocketRocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53C8D3D520BF36EA00F993DB /* SocketRocket.framework */; };
 		53C8D3D820BF36F700F993DB /* SocketRocket.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 53C8D3D520BF36EA00F993DB /* SocketRocket.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		53C8D3DD20BF37E600F993DB /* RMCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53C8D3DC20BF37E600F993DB /* RMCore.framework */; };
+		B0D3418C8D4DB9547AFC114B /* Pods_HomeRobot.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B7564CB034560BF85ACDB43 /* Pods_HomeRobot.framework */; };
+		CF46941223DAFF0D0000E422 /* SCNRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF46941123DAFF0D0000E422 /* SCNRenderer.swift */; };
+		CF46941423DB000D0000E422 /* ARNavigationKitDelicates.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF46941323DB000D0000E422 /* ARNavigationKitDelicates.swift */; };
+		CF46941623DB07C80000E422 /* WifiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF46941523DB07C80000E422 /* WifiService.swift */; };
 		CF70DED523CA22A400D20853 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CF70DED123CA22A400D20853 /* LaunchScreen.storyboard */; };
 		CF70DED623CA22A400D20853 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CF70DED323CA22A400D20853 /* Main.storyboard */; };
 		CFBCF16923CA1FD300E6B3EA /* remote_activation.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CFBCF11B23CA1FD300E6B3EA /* remote_activation.mp3 */; };
@@ -61,13 +65,8 @@
 		CFBCF19323CA1FD300E6B3EA /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBCF14A23CA1FD300E6B3EA /* Map.swift */; };
 		CFBCF19423CA1FD300E6B3EA /* Kinematics.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBCF14C23CA1FD300E6B3EA /* Kinematics.swift */; };
 		CFBCF19523CA1FD300E6B3EA /* WifiServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBCF14E23CA1FD300E6B3EA /* WifiServiceManager.swift */; };
-		CFBCF19623CA1FD300E6B3EA /* RMShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFBCF15023CA1FD300E6B3EA /* RMShared.framework */; };
-		CFBCF19723CA1FD300E6B3EA /* CocoaLumberjack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFBCF15123CA1FD300E6B3EA /* CocoaLumberjack.framework */; };
-		CFBCF19823CA1FD300E6B3EA /* RMCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFBCF15223CA1FD300E6B3EA /* RMCore.framework */; };
-		CFBCF19923CA1FD300E6B3EA /* SocketRocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFBCF15323CA1FD300E6B3EA /* SocketRocket.framework */; };
 		CFBCF19A23CA1FD300E6B3EA /* SCNVector3+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBCF15523CA1FD300E6B3EA /* SCNVector3+Extensions.swift */; };
 		CFBCF19B23CA1FD300E6B3EA /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBCF15623CA1FD300E6B3EA /* Utilities.swift */; };
-		CFBCF19C23CA1FD300E6B3EA /* SCN+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBCF15723CA1FD300E6B3EA /* SCN+Codable.swift */; };
 		CFBCF19D23CA1FD300E6B3EA /* MMSlidingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBCF15823CA1FD300E6B3EA /* MMSlidingButton.swift */; };
 		CFBCF19E23CA1FD300E6B3EA /* SnapshotAnchor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBCF15923CA1FD300E6B3EA /* SnapshotAnchor.swift */; };
 		CFBCF19F23CA1FD300E6B3EA /* ImageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBCF15A23CA1FD300E6B3EA /* ImageHelper.swift */; };
@@ -108,6 +107,12 @@
 		53C8D3D520BF36EA00F993DB /* SocketRocket.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SocketRocket.framework; sourceTree = "<group>"; };
 		53C8D3D920BF379800F993DB /* HomeRobot-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HomeRobot-Bridging-Header.h"; sourceTree = "<group>"; };
 		53C8D3DC20BF37E600F993DB /* RMCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RMCore.framework; sourceTree = "<group>"; };
+		8B7564CB034560BF85ACDB43 /* Pods_HomeRobot.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HomeRobot.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A58D804A7CD8EA3904BE4AA /* Pods-HomeRobot.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HomeRobot.debug.xcconfig"; path = "Target Support Files/Pods-HomeRobot/Pods-HomeRobot.debug.xcconfig"; sourceTree = "<group>"; };
+		BCFFF30271B0048B661F1C48 /* Pods-HomeRobot.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HomeRobot.release.xcconfig"; path = "Target Support Files/Pods-HomeRobot/Pods-HomeRobot.release.xcconfig"; sourceTree = "<group>"; };
+		CF46941123DAFF0D0000E422 /* SCNRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCNRenderer.swift; sourceTree = "<group>"; };
+		CF46941323DB000D0000E422 /* ARNavigationKitDelicates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARNavigationKitDelicates.swift; sourceTree = "<group>"; };
+		CF46941523DB07C80000E422 /* WifiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WifiService.swift; sourceTree = "<group>"; };
 		CF70DED223CA22A400D20853 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CF70DED423CA22A400D20853 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Main.storyboard; sourceTree = "<group>"; };
 		CFBCF11B23CA1FD300E6B3EA /* remote_activation.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = remote_activation.mp3; sourceTree = "<group>"; };
@@ -153,13 +158,8 @@
 		CFBCF14A23CA1FD300E6B3EA /* Map.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Map.swift; sourceTree = "<group>"; };
 		CFBCF14C23CA1FD300E6B3EA /* Kinematics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Kinematics.swift; sourceTree = "<group>"; };
 		CFBCF14E23CA1FD300E6B3EA /* WifiServiceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WifiServiceManager.swift; sourceTree = "<group>"; };
-		CFBCF15023CA1FD300E6B3EA /* RMShared.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RMShared.framework; sourceTree = "<group>"; };
-		CFBCF15123CA1FD300E6B3EA /* CocoaLumberjack.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CocoaLumberjack.framework; sourceTree = "<group>"; };
-		CFBCF15223CA1FD300E6B3EA /* RMCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RMCore.framework; sourceTree = "<group>"; };
-		CFBCF15323CA1FD300E6B3EA /* SocketRocket.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SocketRocket.framework; sourceTree = "<group>"; };
 		CFBCF15523CA1FD300E6B3EA /* SCNVector3+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SCNVector3+Extensions.swift"; sourceTree = "<group>"; };
 		CFBCF15623CA1FD300E6B3EA /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
-		CFBCF15723CA1FD300E6B3EA /* SCN+Codable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SCN+Codable.swift"; sourceTree = "<group>"; };
 		CFBCF15823CA1FD300E6B3EA /* MMSlidingButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MMSlidingButton.swift; sourceTree = "<group>"; };
 		CFBCF15923CA1FD300E6B3EA /* SnapshotAnchor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnapshotAnchor.swift; sourceTree = "<group>"; };
 		CFBCF15A23CA1FD300E6B3EA /* ImageHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageHelper.swift; sourceTree = "<group>"; };
@@ -180,26 +180,42 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CFBCF19623CA1FD300E6B3EA /* RMShared.framework in Frameworks */,
 				53C8D3DD20BF37E600F993DB /* RMCore.framework in Frameworks */,
 				53C8D3D220BF366600F993DB /* CocoaLumberjack.framework in Frameworks */,
 				426F035720C1F70E00A7E790 /* RMShared.framework in Frameworks */,
-				CFBCF19923CA1FD300E6B3EA /* SocketRocket.framework in Frameworks */,
-				CFBCF19823CA1FD300E6B3EA /* RMCore.framework in Frameworks */,
 				426F035420C1F6C700A7E790 /* RMCore.framework in Frameworks */,
-				CFBCF19723CA1FD300E6B3EA /* CocoaLumberjack.framework in Frameworks */,
 				53C8D3D620BF36EB00F993DB /* SocketRocket.framework in Frameworks */,
+				B0D3418C8D4DB9547AFC114B /* Pods_HomeRobot.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		138EBE3EC4FD7C6F8D924C72 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				9A58D804A7CD8EA3904BE4AA /* Pods-HomeRobot.debug.xcconfig */,
+				BCFFF30271B0048B661F1C48 /* Pods-HomeRobot.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		2BA463715C3E9987B546F9F3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8B7564CB034560BF85ACDB43 /* Pods_HomeRobot.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		5314B1F420BE97420024AAE3 = {
 			isa = PBXGroup;
 			children = (
 				5314B1FF20BE97420024AAE3 /* HomeRobot */,
 				5314B1FE20BE97420024AAE3 /* Products */,
+				138EBE3EC4FD7C6F8D924C72 /* Pods */,
+				2BA463715C3E9987B546F9F3 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -217,7 +233,6 @@
 				CFBCF15D23CA1FD300E6B3EA /* 3-D graphics */,
 				CFBCF16323CA1FD300E6B3EA /* Controller */,
 				CFBCF16123CA1FD300E6B3EA /* Delegate */,
-				CFBCF14F23CA1FD300E6B3EA /* Frameworks */,
 				CFBCF14823CA1FD300E6B3EA /* Model */,
 				CFBCF14D23CA1FD300E6B3EA /* Networking */,
 				CFBCF14223CA1FD300E6B3EA /* pin.scn */,
@@ -244,6 +259,17 @@
 				53C8D3D520BF36EA00F993DB /* SocketRocket.framework */,
 			);
 			path = Frameworks;
+			sourceTree = "<group>";
+		};
+		CF46941023DAFED70000E422 /* MainViewController */ = {
+			isa = PBXGroup;
+			children = (
+				CFBCF16523CA1FD300E6B3EA /* ViewController.swift */,
+				CF46941123DAFF0D0000E422 /* SCNRenderer.swift */,
+				CF46941323DB000D0000E422 /* ARNavigationKitDelicates.swift */,
+				CF46941523DB07C80000E422 /* WifiService.swift */,
+			);
+			path = MainViewController;
 			sourceTree = "<group>";
 		};
 		CFBCF11A23CA1FD300E6B3EA /* sounds */ = {
@@ -332,24 +358,11 @@
 			path = Networking;
 			sourceTree = "<group>";
 		};
-		CFBCF14F23CA1FD300E6B3EA /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				CFBCF15023CA1FD300E6B3EA /* RMShared.framework */,
-				CFBCF15123CA1FD300E6B3EA /* CocoaLumberjack.framework */,
-				CFBCF15223CA1FD300E6B3EA /* RMCore.framework */,
-				CFBCF15323CA1FD300E6B3EA /* SocketRocket.framework */,
-			);
-			name = Frameworks;
-			path = "../../../Local document/macOS Apps/HomeRobot-master-3/HomeRobot/Frameworks";
-			sourceTree = "<group>";
-		};
 		CFBCF15423CA1FD300E6B3EA /* Utils */ = {
 			isa = PBXGroup;
 			children = (
 				CFBCF15523CA1FD300E6B3EA /* SCNVector3+Extensions.swift */,
 				CFBCF15623CA1FD300E6B3EA /* Utilities.swift */,
-				CFBCF15723CA1FD300E6B3EA /* SCN+Codable.swift */,
 				CFBCF15823CA1FD300E6B3EA /* MMSlidingButton.swift */,
 				CFBCF15923CA1FD300E6B3EA /* SnapshotAnchor.swift */,
 				CFBCF15A23CA1FD300E6B3EA /* ImageHelper.swift */,
@@ -381,7 +394,7 @@
 			isa = PBXGroup;
 			children = (
 				CFBCF16423CA1FD300E6B3EA /* Audioplayer.swift */,
-				CFBCF16523CA1FD300E6B3EA /* ViewController.swift */,
+				CF46941023DAFED70000E422 /* MainViewController */,
 				CFBCF16623CA1FD300E6B3EA /* MapListController.swift */,
 			);
 			path = Controller;
@@ -402,10 +415,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5314B20F20BE97430024AAE3 /* Build configuration list for PBXNativeTarget "HomeRobot" */;
 			buildPhases = (
+				C0925329974CF5AC3494714E /* [CP] Check Pods Manifest.lock */,
 				5314B1F920BE97420024AAE3 /* Sources */,
 				5314B1FA20BE97420024AAE3 /* Frameworks */,
 				5314B1FB20BE97420024AAE3 /* Resources */,
 				53B7D49920BF34D000715BB6 /* Embed Frameworks */,
+				B2325172CD333C7BDFA3AB9D /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -501,6 +516,48 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		B2325172CD333C7BDFA3AB9D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-HomeRobot/Pods-HomeRobot-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-HomeRobot/Pods-HomeRobot-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HomeRobot/Pods-HomeRobot-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C0925329974CF5AC3494714E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-HomeRobot-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		5314B1F920BE97420024AAE3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -510,8 +567,8 @@
 				CFBCF19F23CA1FD300E6B3EA /* ImageHelper.swift in Sources */,
 				CFBCF1A423CA1FD300E6B3EA /* ARCloud.swift in Sources */,
 				CFBCF1A923CA1FD300E6B3EA /* TouchDriveView.swift in Sources */,
+				CF46941623DB07C80000E422 /* WifiService.swift in Sources */,
 				CFBCF19B23CA1FD300E6B3EA /* Utilities.swift in Sources */,
-				CFBCF19C23CA1FD300E6B3EA /* SCN+Codable.swift in Sources */,
 				CFBCF1A623CA1FD300E6B3EA /* Audioplayer.swift in Sources */,
 				CFBCF19323CA1FD300E6B3EA /* Map.swift in Sources */,
 				CFBCF19E23CA1FD300E6B3EA /* SnapshotAnchor.swift in Sources */,
@@ -522,6 +579,8 @@
 				CFBCF1A723CA1FD300E6B3EA /* ViewController.swift in Sources */,
 				CFBCF1A123CA1FD300E6B3EA /* SCNVector4+Extensions.swift in Sources */,
 				CFBCF19423CA1FD300E6B3EA /* Kinematics.swift in Sources */,
+				CF46941223DAFF0D0000E422 /* SCNRenderer.swift in Sources */,
+				CF46941423DB000D0000E422 /* ARNavigationKitDelicates.swift in Sources */,
 				CFBCF1A223CA1FD300E6B3EA /* ShapeType.swift in Sources */,
 				CFBCF19A23CA1FD300E6B3EA /* SCNVector3+Extensions.swift in Sources */,
 				CFBCF1A823CA1FD300E6B3EA /* MapListController.swift in Sources */,
@@ -667,6 +726,7 @@
 		};
 		5314B21020BE97430024AAE3 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9A58D804A7CD8EA3904BE4AA /* Pods-HomeRobot.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -682,7 +742,7 @@
 				);
 				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/HomeRobot/Frameworks/PlacenoteSDK.framework/Headers/";
 				INFOPLIST_FILE = HomeRobot/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -699,6 +759,7 @@
 		};
 		5314B21120BE97430024AAE3 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BCFFF30271B0048B661F1C48 /* Pods-HomeRobot.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -714,7 +775,7 @@
 				);
 				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/HomeRobot/Frameworks/PlacenoteSDK.framework/Headers/";
 				INFOPLIST_FILE = HomeRobot/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

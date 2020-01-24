@@ -8,19 +8,7 @@
 import ARKit
 import CoreLocation
 import UIKit
-extension UIColor {
-    static var appleBlueColor = UIColor(red: 0, green: 120.0 / 255.0, blue: 200.0 / 255.0, alpha: 1.0)
-}
-
-extension Date {
-    var secondsAgo: TimeInterval {
-        return -timeIntervalSinceNow
-    }
-
-    var millisecondsAgo: TimeInterval {
-        return -timeIntervalSinceNow * 1000.0
-    }
-}
+import ARNavigationKit
 
 class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate,
     CLLocationManagerDelegate, MapListDelegate,
@@ -85,8 +73,6 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate,
         }
     }
 
-    // TODO: map id to sync with remote partner?
-    //  not sure how placenote works exactly -- like status can still !running/lost but the sync seems fine
     var hasFoundMapOnce = false
 
     var trackingStarted = false
@@ -101,9 +87,15 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate,
     var sceneView: ARSCNView!
     var scene: SCNScene!
     let defaultConfiguration = ARWorldTrackingConfiguration()
+    
+    let augmentedRealitySession = ARSession()
+    
+    var voxelMap = ARNavigationKit(VoxelGridCellSize: 0.1)
+    
+    var voxleRootNode = SCNNode()
 
-    private var planesVizAnchors = [ARAnchor]()
-    private var planesVizNodes = [UUID: SCNNode]()
+    var planesVizAnchors = [ARAnchor]()
+    var planesVizNodes = [UUID: SCNNode]()
     var planeDetection = true
 
     var shapeManager: ShapeManager!
@@ -133,11 +125,12 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate,
         TestRobotMessages()
 
         sceneView = ARSCNView(frame: view.frame)
-
-        sceneView.session.delegate = self
+        sceneView.session = augmentedRealitySession
         sceneView.delegate = self
         sceneView.autoenablesDefaultLighting = true
         sceneView.isPlaying = true
+        
+        voxelMap.arNavigationKitDelegate = self
 
         scene = SCNScene()
         sceneView.scene = scene
@@ -239,7 +232,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate,
         }
 
         // Run the view's session
-        sceneView.session.run(defaultConfiguration)
+        augmentedRealitySession.run(defaultConfiguration)
     }
 
     // MARK: - MapListDelegate
@@ -261,7 +254,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate,
         currentMapId = map.mapId
         let configuration = defaultConfiguration // this app's standard world tracking settings
         configuration.initialWorldMap = map.worldMap
-        sceneView.session.run(configuration, options: [.resetTracking, .removeExistingAnchors])
+        augmentedRealitySession.run(configuration, options: [.resetTracking, .removeExistingAnchors])
     }
 
     // MARK: - UI Actions
@@ -460,6 +453,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate,
     func renderer(_: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
         guard let planeAnchor = anchor as? ARPlaneAnchor else { return }
 
+        voxelMap.updateGroundPlane(planeAnchor)
         // Create a SceneKit plane to visualize the plane anchor using its position and extent.
         let plane = SCNPlane(width: CGFloat(planeAnchor.extent.x), height: CGFloat(planeAnchor.extent.z))
         plane.firstMaterial?.diffuse.contents = UIColor.magenta
@@ -492,6 +486,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate,
             let planeNode = node.childNodes.first,
             let plane = planeNode.geometry as? SCNPlane
         else { return }
+//        voxelMap.updateGroundPlane(planeAnchor)
 
         // Plane estimation may shift the center of a plane relative to its anchor's transform.
         planeNode.simdPosition = float3(planeAnchor.center.x, 0, planeAnchor.center.z)
@@ -505,6 +500,13 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate,
         plane.width = CGFloat(planeAnchor.extent.x)
         plane.height = CGFloat(planeAnchor.extent.z)
     }
+    
+       func renderer(_: SCNSceneRenderer, updateAtTime _: TimeInterval) {
+        // 1. Check Our Frame Is Valid & That We Have Received Our Raw Feature Points
+           guard let currentFrame = self.augmentedRealitySession.currentFrame,
+               let featurePointsArray = currentFrame.rawFeaturePoints?.points else { return }
+           voxelMap.addVoxels(featurePointsArray)
+       }
 
     // MARK: - ARSessionDelegate
 
@@ -768,7 +770,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate,
                 let configuration = ARWorldTrackingConfiguration()
                 configuration.planeDetection = .horizontal
                 configuration.initialWorldMap = worldMap
-                sceneView.session.run(configuration, options: [.resetTracking, .removeExistingAnchors])
+                augmentedRealitySession.run(configuration, options: [.resetTracking, .removeExistingAnchors])
                 areClientsSynced = true
             }
             DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
@@ -1085,63 +1087,6 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate,
     }
 }
 
-// MARK: - WifiServiceManagerDelegate
-
-extension ViewController: WifiServiceManagerDelegate {
-    func connectedDevicesChanged(manager _: WifiServiceManager, connectedDevices: [String]) {
-        OperationQueue.main.addOperation {
-            var s = ""
-            for d in connectedDevices {
-                s += d
-                s += ", "
-            }
-            self.connectionsLabel.text = "Wifi: " + s
-
-            self.botConnectionState = .wifi
-            if connectedDevices.count == 0, self.robot == nil {
-                self.botConnectionState = .disconnected
-            } else if connectedDevices.count > 0, self.robot == nil {
-                self.botConnectionState = .wifi
-                self.killRobotSlider.reset()
-                _ = AudioPlayer.shared.play(.data_transfer_complete)
-            } else if connectedDevices.count > 0, self.robot != nil {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
-                    _ = AudioPlayer.shared.play(.remote_activation)
-                }
-            }
-        }
-    }
-
-    func gotData(manager _: WifiServiceManager, data: Data) {
-        processIncomingData(data)
-    }
-}
-
-extension ViewController: RMCoreDelegate {
-    func robotDidConnect(_ robot: RMCoreRobot!) {
-        self.robot = robot as? RMCoreRobotRomo3
-        robotStatusLabel.text = "Robot Connected!"
-        botConnectionState = .plug
-
-        _ = AudioPlayer.shared.play(.docking_sequence_activated)
-        self.robot.tilt(toAngle: 20, completion: { _ in
-            self.robot.tilt(toAngle: 90, completion: { _ in
-                DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-                    _ = AudioPlayer.shared.play(.welcome)
-                    AudioPlayer.shared.playAmbient()
-                }
-            })
-        })
-    }
-
-    func robotDidDisconnect(_: RMCoreRobot!) {
-        robot = nil
-        robotStatusLabel.text = "Robot Disconnected"
-        botConnectionState = .disconnected
-        _ = AudioPlayer.shared.play(.hibernation_activated)
-        AudioPlayer.shared.stopAmbient()
-    }
-}
 
 extension ViewController: SlideButtonDelegate {
     func buttonStatus(status _: String, sender _: MMSlidingButton) {
