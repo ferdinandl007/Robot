@@ -6,9 +6,9 @@
 //  Copyright © 2019 Ferdinand Lösch. All rights reserved.
 //
 import ARKit
+import ARNavigationKit
 import CoreLocation
 import UIKit
-import ARNavigationKit
 
 class ViewController: UIViewController, ARSessionDelegate,
     CLLocationManagerDelegate, MapListDelegate,
@@ -17,6 +17,15 @@ class ViewController: UIViewController, ARSessionDelegate,
         case disconnected
         case wifi
         case plug
+    }
+
+    enum driveState {
+        case getWaypoints
+        case calculatePath
+        case waiting
+        case getPoint
+        case driveToTarget
+        case reachTarget
     }
 
     var botConnectionState: RobotConnectionState = .disconnected {
@@ -87,11 +96,11 @@ class ViewController: UIViewController, ARSessionDelegate,
     var sceneView: ARSCNView!
     var scene: SCNScene!
     let defaultConfiguration = ARWorldTrackingConfiguration()
-    
+
     let augmentedRealitySession = ARSession()
-    
+
     var voxelMap = ARNavigationKit(VoxelGridCellSize: 0.1)
-    
+
     var voxleRootNode = SCNNode()
 
     var planesVizAnchors = [ARAnchor]()
@@ -106,7 +115,9 @@ class ViewController: UIViewController, ARSessionDelegate,
     private var currentMapId: String!
     private var lastScreenshot: UIImage!
 
-    private var path: [SCNVector3]?
+    var path: [SCNVector3] = []
+
+    var currentDriveState: driveState = .getWaypoints
 
     // Wifi stuff
     @IBOutlet var connectionsLabel: UILabel!
@@ -129,7 +140,7 @@ class ViewController: UIViewController, ARSessionDelegate,
         sceneView.delegate = self
         sceneView.autoenablesDefaultLighting = true
         sceneView.isPlaying = true
-        
+
         voxelMap.arNavigationKitDelegate = self
 
         scene = SCNScene()
@@ -233,6 +244,12 @@ class ViewController: UIViewController, ARSessionDelegate,
 
         // Run the view's session
         augmentedRealitySession.run(defaultConfiguration)
+
+        Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { _ in
+            guard let currentFrame = self.augmentedRealitySession.currentFrame,
+                let featurePointsArray = currentFrame.rawFeaturePoints?.points else { return }
+            self.voxelMap.addVoxels(featurePointsArray)
+        }
     }
 
     // MARK: - MapListDelegate
@@ -441,7 +458,6 @@ class ViewController: UIViewController, ARSessionDelegate,
         }
     }
 
-
     // MARK: - ARSessionDelegate
 
     // Provides a newly captured camera image and accompanying AR information to the delegate.
@@ -565,7 +581,12 @@ class ViewController: UIViewController, ARSessionDelegate,
             // Add a snapshot image indicating where the map was captured.
             guard let snapshotAnchor = SnapshotAnchor(capturing: self.sceneView)
             else { fatalError("Can't take snapshot") }
+
+            let volxelMapAnchor = VoxelMapAnchor(map: self.voxelMap.getMapData())
+
             map.anchors.append(snapshotAnchor)
+            map.anchors.append(volxelMapAnchor)
+
             let data = EncodeMapMessage(map)
             self.wifiDevice.sendData(data, largeData: false)
             self.areClientsSynced = true
@@ -583,7 +604,7 @@ class ViewController: UIViewController, ARSessionDelegate,
 
     var areClientsSynced = false
 
-    // updates the Roberts projected path
+    // updates the robot projected path
     func updatePath(_ path: [SCNVector3]?) {
         if path == self.path { return }
         scene.rootNode.enumerateChildNodes { node, _ in
@@ -677,7 +698,7 @@ class ViewController: UIViewController, ARSessionDelegate,
 
     // MARK: - Path
 
-    var points: [RobotMarker] = []
+    var wayePointMarker: [RobotMarker] = []
 
     var isDriving: Bool = false
 
@@ -687,10 +708,10 @@ class ViewController: UIViewController, ARSessionDelegate,
     func addDrivingPoint(_ marker: RobotMarker) {
         showStatus("Waypoint: " + String(marker.flagId))
         driveQueue.async {
-            self.points.append(marker)
+            self.wayePointMarker.append(marker)
 
             if self.isDriving == false {
-                self.driveCurrentPath()
+                self.driveCurrentPath_V2()
             }
         }
     }
@@ -704,6 +725,12 @@ class ViewController: UIViewController, ARSessionDelegate,
                 let configuration = ARWorldTrackingConfiguration()
                 configuration.planeDetection = .horizontal
                 configuration.initialWorldMap = worldMap
+                guard let mapData = worldMap.anchors.filter({ $0.name == "VoxelMap" }).first
+                else { fatalError("no volex map") }
+                guard let voxlemap = (mapData as? VoxelMapAnchor) else {
+                    fatalError("no volex map")
+                }
+                voxelMap.lodeMapFromData(voxlemap.map)
                 augmentedRealitySession.run(configuration, options: [.resetTracking, .removeExistingAnchors])
                 areClientsSynced = true
             }
@@ -721,8 +748,7 @@ class ViewController: UIViewController, ARSessionDelegate,
     var leftPowerTween: Float = 0
     var rightPowerTween: Float = 0
 
-    // Attempt badly to drive robot to each point in the 'points' list
-    func driveCurrentPath() {
+    func driveCurrentPath_V2() {
         if isDriving { return }
 
         if !robot.isConnected { return }
@@ -732,45 +758,79 @@ class ViewController: UIViewController, ARSessionDelegate,
         isDriving = true
 
         DispatchQueue.global().async {
-            var currentPoint: RobotMarker!
+            var end = false
+            var currentWayPoint: RobotMarker!
+            var currentPoint: SCNVector3!
+            while !end {
+                switch self.currentDriveState {
+                case .getWaypoints:
+                    // get point if exists
+                    currentWayPoint = nil
 
-            while true {
-                // get point if exists
-                currentPoint = nil
-
-                self.driveQueue.sync {
-                    if self.points.count > 0 {
-                        currentPoint = self.points.remove(at: 0)
+                    self.driveQueue.sync {
+                        if self.wayePointMarker.count > 0 {
+                            currentWayPoint = self.wayePointMarker.remove(at: 0)
+                            self.currentDriveState = .calculatePath
+                        }
                     }
-                }
+                    // out of points
+                    if currentWayPoint == nil {
+                        self.currentDriveState = .reachTarget
+                    }
+                    print("currentDriveState getWaypoints")
+                case .calculatePath:
+                    print("currentDriveState calculatePath")
+                    let transform = cam.transform
+                    let botPos = SCNVector3(transform.m41, transform.m42, transform.m43)
+                    guard let marker = currentWayPoint?.position else { break }
+                    self.voxelMap.getPath(start: botPos, end: marker)
+                    self.currentDriveState = .waiting
+                case .waiting:
+                    print("currentDriveState waiting")
+                    Thread.sleep(forTimeInterval: 1.0 / 15.0)
 
-                // out of points
-                if currentPoint == nil {
-                    break
-                }
+                case .getPoint:
+                    print("currentDriveState getPoint")
+                    // get point if exists
+                    currentPoint = nil
 
-                // TODO: Better path planning
-                // RM_DRIVE_RADIUS_TURN_IN_PLACE = 0
-                // let r1 = RM_DRIVE_RADIUS_TURN_IN_PLACE
-                // self.robot.drive(withRadius: 0, speed: 1)
+                    self.driveQueue.sync {
+                        if self.path.count > 0 {
+                            currentPoint = self.path.remove(at: 0)
+                            self.currentDriveState = .driveToTarget
+                        }
+                    }
+                    // out of points
+                    if currentPoint == nil {
+                        self.currentDriveState = .getWaypoints
+                    }
 
-                // Run drive + adjust loop
-                while true {
+                case .driveToTarget:
+                    print("currentDriveState driveToTarget")
                     let camPos = cam.worldPosition
-                    let destPos = currentPoint.position.withY(y: cam.worldPosition.y)
+                    let destPos = currentPoint.withY(y: cam.worldPosition.y)
+                    let destMarkerPos = currentWayPoint.position.withY(y: cam.worldPosition.y)
                     let destDir = destPos - camPos
                     // phone faces opposite direction from bot forward
                     // so phone camera forward is -Z .. bot forward is Z
-                    let botDir = cam.worldTransform.zAxis.withY(y: 0)
+                    let botDir = cam.worldTransform.zAxis.withY(y: 0) * -1
                     let angleDiff = botDir.angle(between: destDir) * 180.0 / Float.pi
 
                     let minDistToWayPoint: Float = 0.15
 
                     // Is the point too close to robot to bother?
+                    let distMarker = (camPos - destMarkerPos).length()
+                    if distMarker < minDistToWayPoint {
+                        self.sendCompletedMarker(currentWayPoint)
+                        _ = AudioPlayer.shared.play(.target_range)
+                        self.currentDriveState = .getWaypoints
+                        break
+                    }
+
+                    // Is the point too close to robot to bother?
                     let dist = (camPos - destPos).length()
                     if dist < minDistToWayPoint {
-                        self.sendCompletedMarker(currentPoint)
-                        _ = AudioPlayer.shared.play(.target_range)
+                        self.currentDriveState = .getPoint
                         break
                     }
 
@@ -811,10 +871,128 @@ class ViewController: UIViewController, ARSessionDelegate,
                     self.robot.drive(withLeftMotorPower: self.leftPowerTween, rightMotorPower: self.rightPowerTween)
 
                     Thread.sleep(forTimeInterval: 1.0 / 15.0)
+
+                case .reachTarget:
+                    print("currentDriveState reachTarget")
+                    self.currentDriveState = .getWaypoints
+                    self.status("Finished Path")
+                    _ = AudioPlayer.shared.play(.all_phases_complete)
+                    self.sendMessage(StatusMessage(statusMessage: .missioncompleted))
+                    self.robot.stopDriving()
+                    self.isDriving = false
+                    end = true
+                }
+            }
+        }
+    }
+
+    func driveCurrentPath() {
+        if isDriving { return }
+
+        if !robot.isConnected { return }
+
+        guard let cam = self.sceneView.pointOfView else { return }
+
+        isDriving = true
+
+        DispatchQueue.global().async {
+            var currentWayPoint: RobotMarker!
+            while true {
+                currentWayPoint = nil
+
+                self.driveQueue.sync {
+                    if self.wayePointMarker.count > 0 {
+                        currentWayPoint = self.wayePointMarker.remove(at: 0)
+                    }
+                }
+
+                // out of points
+                if currentWayPoint == nil {
+                    break
+                }
+                var currentPoint: RobotMarker!
+                while true {
+                    // get point if exists
+                    currentPoint = nil
+
+                    self.driveQueue.sync {
+                        if self.wayePointMarker.count > 0 {
+                            currentPoint = self.wayePointMarker.remove(at: 0)
+                        }
+                    }
+
+                    // out of points
+                    if currentPoint == nil {
+                        break
+                    }
+
+                    // TODO: Better path planning
+                    // RM_DRIVE_RADIUS_TURN_IN_PLACE = 0
+                    // let r1 = RM_DRIVE_RADIUS_TURN_IN_PLACE
+                    // self.robot.drive(withRadius: 0, speed: 1)
+
+                    // Run drive + adjust loop
+                    while true {
+                        let camPos = cam.worldPosition
+                        let destPos = currentPoint.position.withY(y: cam.worldPosition.y)
+                        let destDir = destPos - camPos
+                        // phone faces opposite direction from bot forward
+                        // so phone camera forward is -Z .. bot forward is Z
+                        let botDir = cam.worldTransform.zAxis.withY(y: 0) * -1
+                        let angleDiff = botDir.angle(between: destDir) * 180.0 / Float.pi
+
+                        let minDistToWayPoint: Float = 0.15
+
+                        // Is the point too close to robot to bother?
+                        let dist = (camPos - destPos).length()
+                        if dist < minDistToWayPoint {
+                            self.sendCompletedMarker(currentPoint)
+                            _ = AudioPlayer.shared.play(.target_range)
+                            break
+                        }
+
+                        let turnRight = botDir.cross(vector: destDir).y < 0
+
+                        var leftPower: Float = 0
+                        var rightPower: Float = 0
+
+                        let speed: Float = 0.6 + 0.2 * min(dist, 2.0)
+                        let maxAngle: Float = 50.0
+
+                        if angleDiff > maxAngle {
+                            let turnPower: Float = 0.62
+
+                            // just do turn around
+                            leftPower = turnRight ? turnPower : -turnPower
+                            rightPower = turnRight ? -turnPower : turnPower
+
+                        } else {
+                            let frac: Float = 0.1
+                            // at center:  1 --> 0
+                            let turnFactor = (1.0 - pow(angleDiff / maxAngle, 0.4))
+                            let turnPower = frac + (speed - frac) * turnFactor
+
+                            if turnRight {
+                                leftPower = speed
+                                rightPower = turnPower
+
+                            } else {
+                                rightPower = speed
+                                leftPower = turnPower
+                            }
+                        }
+
+                        self.leftPowerTween = self.leftPowerTween - (self.leftPowerTween - leftPower) * 0.2
+                        self.rightPowerTween = self.rightPowerTween - (self.rightPowerTween - rightPower) * 0.2
+
+                        self.robot.drive(withLeftMotorPower: self.leftPowerTween, rightMotorPower: self.rightPowerTween)
+
+                        Thread.sleep(forTimeInterval: 1.0 / 15.0)
+                    }
                 }
             }
 
-            self.status("Finished Path")
+            // self.status("Finished Path")
             _ = AudioPlayer.shared.play(.all_phases_complete)
             self.sendMessage(StatusMessage(statusMessage: .missioncompleted))
             self.robot.stopDriving()
@@ -1020,7 +1198,6 @@ class ViewController: UIViewController, ARSessionDelegate,
         }
     }
 }
-
 
 extension ViewController: SlideButtonDelegate {
     func buttonStatus(status _: String, sender _: MMSlidingButton) {

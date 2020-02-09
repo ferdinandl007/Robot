@@ -23,6 +23,7 @@
 		903EA299D72A41C099BA165155DFD03E /* ARKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2368922BCEA1812FCFF5D831B86A4991 /* ARKit.framework */; };
 		AF50358A1012EAF649204B29688BE4F3 /* Pods-HomeRobot-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BE766F5D5F5DEE3BCE16898104D741B /* Pods-HomeRobot-dummy.m */; };
 		CB054F11824A873837CB96924049AA9E /* VoxelMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715ABAAF09561F94DB083606216F3555 /* VoxelMap.swift */; };
+		CFC7275623EEDE2A0082BA90 /* VoxelMapAnchor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC7275523EEDE2A0082BA90 /* VoxelMapAnchor.swift */; };
 		E33D46CF27C8858AAA7C7F8EF99807FB /* ARNavigationKit-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = BA86E80D123CB8E7FA6CB5702383C095 /* ARNavigationKit-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E5CE3118FA4AB4B9136FD25F3C4B4837 /* SCNVector3+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A48530DADA8B2CE0B6532101ABFC34 /* SCNVector3+Extensions.swift */; };
 		E7296F19595F84FA3F15BC4BCF1CF0EE /* AStar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3590E80DE60B674FD73BD5527501F16F /* AStar.swift */; };
@@ -46,31 +47,32 @@
 		226C6BC39E5AE7F6786BCD879A9EBDE2 /* Heap.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Heap.swift; path = ARNavigationKit/Heap.swift; sourceTree = "<group>"; };
 		2368922BCEA1812FCFF5D831B86A4991 /* ARKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ARKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.2.sdk/System/Library/Frameworks/ARKit.framework; sourceTree = DEVELOPER_DIR; };
 		24AF46A5A142847F8A0E6EC4118910A8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.2.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		2566CB3EF5E58222350795E67CB4811E /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
+		2566CB3EF5E58222350795E67CB4811E /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		2BE766F5D5F5DEE3BCE16898104D741B /* Pods-HomeRobot-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-HomeRobot-dummy.m"; sourceTree = "<group>"; };
 		2DBCB21D89CDB52E16FBD0CD0C18D313 /* Matrix.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Matrix.swift; path = ARNavigationKit/Matrix.swift; sourceTree = "<group>"; };
 		3190EC339CDFDAE94B12E6C90D531FE0 /* SKLine.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SKLine.swift; sourceTree = "<group>"; };
 		3590E80DE60B674FD73BD5527501F16F /* AStar.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AStar.swift; path = ARNavigationKit/AStar.swift; sourceTree = "<group>"; };
 		38D3676509B937BF7DDC2D917FBFADF8 /* Pods-HomeRobot-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-HomeRobot-umbrella.h"; sourceTree = "<group>"; };
 		3B27666F642E00FACFF742F7C2351732 /* Pods-HomeRobot-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-HomeRobot-acknowledgements.markdown"; sourceTree = "<group>"; };
-		3D5A7E329E1E5EAC5D9C7EED57E65046 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
+		3D5A7E329E1E5EAC5D9C7EED57E65046 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		401A07CBDC53C4EBDD6DAA64DFA8DCB7 /* Extensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Extensions.swift; path = ARNavigationKit/Extensions.swift; sourceTree = "<group>"; };
 		428F9237A268BE4E4B7297F494E301C1 /* MapVisualisation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MapVisualisation.swift; path = ARNavigationKit/MapVisualisation.swift; sourceTree = "<group>"; };
-		43D6554CDF138C2C9DFA70C8E6E34D86 /* Pods_HomeRobot.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_HomeRobot.framework; path = "Pods-HomeRobot.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		43D6554CDF138C2C9DFA70C8E6E34D86 /* Pods_HomeRobot.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HomeRobot.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		54B2E7E0253310F1EDB95A09E186BC88 /* ARNavigationKit-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "ARNavigationKit-dummy.m"; sourceTree = "<group>"; };
 		715ABAAF09561F94DB083606216F3555 /* VoxelMap.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = VoxelMap.swift; path = ARNavigationKit/VoxelMap.swift; sourceTree = "<group>"; };
 		7956659FF00ACE02C5624D0AA19842D7 /* SCN+Codable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "SCN+Codable.swift"; sourceTree = "<group>"; };
 		84BE04086266F4EA0D2216C5BCB96C3F /* ARNavigationKit.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = ARNavigationKit.xcconfig; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		B046068ABEBC5D63EC60385FFA96DF47 /* Pods-HomeRobot.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-HomeRobot.debug.xcconfig"; sourceTree = "<group>"; };
 		BA86E80D123CB8E7FA6CB5702383C095 /* ARNavigationKit-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ARNavigationKit-umbrella.h"; sourceTree = "<group>"; };
 		C4384FC759C6F59908192805BA9167BA /* Pods-HomeRobot-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-HomeRobot-Info.plist"; sourceTree = "<group>"; };
 		C835695D8E7B1BE48683F2AFB15F7E9F /* ARNavigationKit-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ARNavigationKit-Info.plist"; sourceTree = "<group>"; };
-		D06D684EA95F51A3BE26503B57F80A19 /* ARNavigationKit.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = ARNavigationKit.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		CFC7275523EEDE2A0082BA90 /* VoxelMapAnchor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoxelMapAnchor.swift; sourceTree = "<group>"; };
+		D06D684EA95F51A3BE26503B57F80A19 /* ARNavigationKit.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = ARNavigationKit.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		D8110DF87EFB3CFD505D22F6F6231C41 /* Pods-HomeRobot.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-HomeRobot.release.xcconfig"; sourceTree = "<group>"; };
 		DD936C5CC02CB1424255B401540B5845 /* Mapfilters.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Mapfilters.swift; path = ARNavigationKit/Mapfilters.swift; sourceTree = "<group>"; };
 		E0A48530DADA8B2CE0B6532101ABFC34 /* SCNVector3+Extensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "SCNVector3+Extensions.swift"; sourceTree = "<group>"; };
-		E1DDE9AEA9EA91533D4F9C5E62C20AB0 /* ARNavigationKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = ARNavigationKit.framework; path = ARNavigationKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E1DDE9AEA9EA91533D4F9C5E62C20AB0 /* ARNavigationKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ARNavigationKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3967AA4E94DD32E82E5686D79044BDB /* Voxel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Voxel.swift; path = ARNavigationKit/Voxel.swift; sourceTree = "<group>"; };
 		EC90BAE4C6408D688212356264253CB9 /* ARNavigationKit.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = ARNavigationKit.modulemap; sourceTree = "<group>"; };
 		EDB850B8966B0BD789191279EC5E02E0 /* MMSlidingButton.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MMSlidingButton.swift; sourceTree = "<group>"; };
@@ -110,6 +112,7 @@
 		24023CC80F52CABF50B3299C9605EFFC /* ARNavigationKit */ = {
 			isa = PBXGroup;
 			children = (
+				CFC7275523EEDE2A0082BA90 /* VoxelMapAnchor.swift */,
 				3590E80DE60B674FD73BD5527501F16F /* AStar.swift */,
 				401A07CBDC53C4EBDD6DAA64DFA8DCB7 /* Extensions.swift */,
 				226C6BC39E5AE7F6786BCD879A9EBDE2 /* Heap.swift */,
@@ -337,6 +340,7 @@
 				584989AF588D07A1CCD2A8EAA454FE3A /* ARNavigationKit-dummy.m in Sources */,
 				E7296F19595F84FA3F15BC4BCF1CF0EE /* AStar.swift in Sources */,
 				640E3D6384DA0E8D19EAFC9AB2CB2AD6 /* Extensions.swift in Sources */,
+				CFC7275623EEDE2A0082BA90 /* VoxelMapAnchor.swift in Sources */,
 				1E58573F438C350EC05A94FEF16E5464 /* Heap.swift in Sources */,
 				8493BC7AA5A488764BB2B9036491ECE3 /* Mapfilters.swift in Sources */,
 				FF3C98697112924981FE91D737174001 /* MapVisualisation.swift in Sources */,

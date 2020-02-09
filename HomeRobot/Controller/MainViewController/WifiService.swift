@@ -11,7 +11,6 @@ import Foundation
 // MARK: - WifiServiceManagerDelegate
 
 extension ViewController: WifiServiceManagerDelegate {
-    
     func connectedDevicesChanged(manager _: WifiServiceManager, connectedDevices: [String]) {
         OperationQueue.main.addOperation {
             var s = ""

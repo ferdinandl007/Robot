@@ -13,7 +13,7 @@ class Kinematics {
     static let shared = Kinematics()
     // Initializer access level change now
     private init() {}
-    func targetPoseToVelocityLinear(_ currentPosition: vector_float3,_ target: vector_float3) -> (Float, Float) {
+    func targetPoseToVelocityLinear(_ currentPosition: vector_float3, _ target: vector_float3) -> (Float, Float) {
         let relativeTarget = currentPosition - target
         let gain: Float = 0.5
         let velocity: Float = 0
@@ -44,5 +44,4 @@ class Kinematics {
 //
 //        return
 //    }
-
 }
