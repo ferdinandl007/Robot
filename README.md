@@ -1,4 +1,4 @@
-# HomeRobot
-Code accompanying the medium post _How to Make a Cheap* ARKit Home Robot_
+# ARKit Home Robot
+demo
 
-For more information, see: https://medium.com/@laanlabs/how-to-make-a-cheap-arkit-home-robot-3db599377e4f
+[![Alt text](https://img.youtube.com/vi/VID/0.jpg)](https://www.youtube.com/watch?v=v-9B6HPRNEA)
